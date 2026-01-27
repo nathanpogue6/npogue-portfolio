@@ -1,0 +1,90 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+
+export default function Hero() {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [displayedText, setDisplayedText] = useState('')
+  
+  const fullText = 'Turning complex cloud problems into simple solutions'
+
+  useEffect(() => {
+    setIsLoaded(true)
+    
+    // Character-by-character fade-in animation
+    let currentIndex = 0
+    const interval = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex))
+        currentIndex++
+      } else {
+        clearInterval(interval)
+      }
+    }, 50) // 50ms per character
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background image with overlay */}
+      <div className="absolute inset-0 overflow-hidden">
+        <img 
+          src="/background.webp" 
+          alt="Background" 
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay to dim the image */}
+        <div className="absolute inset-0 bg-black/70"></div>
+        {/* Gradient fade to blend with next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black"></div>
+      </div>
+
+      <div className={`relative z-10 text-center px-6 transition-all duration-1000 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}>
+        <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight whitespace-nowrap">
+          Nathan
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300">
+            {' '}Pogue
+          </span>
+        </h1>
+        
+        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed min-h-[2rem] flex items-center justify-center">
+          <span>{displayedText}</span>
+          <span className="inline-block w-0.5 h-6 bg-gray-300 ml-1 animate-pulse align-middle" 
+                style={{ opacity: displayedText.length < fullText.length ? 1 : 0 }} />
+        </p>
+        
+        <p className="text-lg text-gray-400 mb-12 max-w-xl mx-auto">
+          Currently bridging the gap between sales and engineering as a Solutions Architect at AWS
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="#projects"
+            className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            View My Work
+          </a>
+          <a
+            href="#contact"
+            className="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+          >
+            Get In Touch
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <a 
+        href="#about"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer hover:opacity-80 transition-opacity"
+        aria-label="Scroll to About section"
+      >
+        <ChevronDownIcon className="w-6 h-6 text-white/60" />
+      </a>
+    </section>
+  )
+}
