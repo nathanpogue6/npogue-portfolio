@@ -10,7 +10,7 @@ export default function About() {
               About Me
             </h2>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Hi, I'm Nathan Pogue, a passionate Full Stack Developer with a knack for crafting 
+              Hi, I'm Nathan Pogue, a passionate Solutions Architect with a knack for crafting 
               seamless digital experiences. With a strong background in both front-end and back-end 
               technologies, I thrive at the intersection where creativity meets technology.
             </p>

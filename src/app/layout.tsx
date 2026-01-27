@@ -9,8 +9,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Nathan Pogue Portfolio",
-  description: "Portfolio of Nathan Pogue, a passionate Full Stack Developer specializing in modern web technologies and creative digital solutions.",
-  keywords: ["Nathan Pogue", "Full Stack Developer", "React", "Next.js", "TypeScript", "Web Development"],
+  description: "Portfolio of Nathan Pogue, a passionate Solutions Architect specializing in cloud solutions, AI/ML, and healthcare.",
+  keywords: ["Nathan Pogue", "Solutions Architect", "AI", "Generative AI", "Healthcare"],
   authors: [{ name: "Nathan Pogue" }],
 };
 
