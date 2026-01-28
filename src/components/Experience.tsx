@@ -4,32 +4,32 @@ export default function Experience() {
       title: "Solutions Architect",
       company: "Amazon Web Services (AWS)",
       period: "2023 - Present",
-      description: "Led development of scalable web applications using React, Node.js, and cloud technologies. Mentored junior developers and implemented best practices.",
-      technologies: ["React", "Node.js", "TypeScript", "AWS", "PostgreSQL"],
+      description: "Spearheaded cloud adoption across Canadian healthcare organizations, driving >$45M+ in new ARR, with dedicated focus on EHR, AI/ML, and analytics workloads.",
+      technologies: ["Amazon Bedrock", "Amazon SageMaker", "Epic", "Amazon QuickSight", "Amazon EC2"],
       logo: "/aws.png"
     },
     {
       title: "Solutions Architect Intern",
       company: "Amazon Web Services (AWS)",
-      period: "2020 - 2022",
-      description: "Developed responsive web applications and collaborated with design teams to create engaging user experiences.",
-      technologies: ["React", "JavaScript", "CSS", "Figma", "Git"],
+      period: "2022 - 2022",
+      description: "Product owner and software engineer for an internal web application used to automate dry-run presentations and enhance soft skills using AI services, used by 2,500+ Amazonians internally.",
+      technologies: ["React", "JavaScript", "Git", "Amazon Bedrock", "AWS Amplify", "Amazon Transcribe"],
       logo: "/aws.png"
     },
     {
-      title: "Associate Consultant",
+      title: "Summer Associate Consultant",
       company: "Slalom Consulting",
-      period: "2019 - 2020",
-      description: "Built and maintained web applications while learning modern development practices and agile methodologies.",
-      technologies: ["HTML", "CSS", "JavaScript", "Python", "Django"],
+      period: "2021 - 2021",
+      description: "Developed a business strategy between technical and marketing teams to design an enterprise CDP MarTech solution for a large Canadian telco.",
+      technologies: ["Excel", "PowerPoint"],
       logo: "/slalom.jpg"
     },
     {
       title: "Salesforce Support Specialist",
       company: "ATB Financial",
-      period: "2019 - 2020",
-      description: "Built and maintained web applications while learning modern development practices and agile methodologies.",
-      technologies: ["HTML", "CSS", "JavaScript", "Python", "Django"],
+      period: "2019 - 2019",
+      description: "Trained 40+ financial advisors on Salesforce to visualize client financial data and help ATB Wealth executives identify 15+ new business trends.",
+      technologies: ["Salesforce", "Excel", "Powerpoint"],
       logo: "/atb.png"
     }
   ]
@@ -65,7 +65,7 @@ export default function Experience() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-semibold text-white mb-2">{exp.title}</h3>
-                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300 text-lg">{exp.company}</p>
+                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300 text-lg font-medium">{exp.company}</p>
                   </div>
                 </div>
                 <span className="text-gray-400 font-medium mt-2 md:mt-0">{exp.period}</span>

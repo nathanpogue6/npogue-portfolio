@@ -7,7 +7,7 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [displayedText, setDisplayedText] = useState('')
   
-  const fullText = 'Turning complex cloud problems into simple solutions'
+  const fullText = 'Solutions Architect at '
 
   useEffect(() => {
     setIsLoaded(true)
@@ -27,18 +27,22 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background image with overlay */}
+    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Background video with overlay */}
       <div className="absolute inset-0 overflow-hidden">
-        <img 
-          src="/background.webp" 
-          alt="Background" 
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
           className="w-full h-full object-cover"
-        />
-        {/* Dark overlay to dim the image */}
+        >
+          <source src="/background.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay to dim the video */}
         <div className="absolute inset-0 bg-black/70"></div>
         {/* Gradient fade to blend with next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-black"></div>
       </div>
 
       <div className={`relative z-10 text-center px-6 transition-all duration-1000 ${
@@ -51,20 +55,27 @@ export default function Hero() {
           </span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed min-h-[2rem] flex items-center justify-center">
+        <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto leading-relaxed min-h-[2rem] flex items-center justify-center">
           <span>{displayedText}</span>
-          <span className="inline-block w-0.5 h-6 bg-gray-300 ml-1 animate-pulse align-middle" 
+          {displayedText.length >= fullText.length && (
+            <img 
+              src="/aws.png"
+              alt="AWS" 
+              className="inline-block h-8 md:h-10 ml-2 align-middle"
+            />
+          )}
+          <span className="inline-block w-0.5 h-6 bg-white ml-1 animate-pulse align-middle" 
                 style={{ opacity: displayedText.length < fullText.length ? 1 : 0 }} />
         </p>
         
-        <p className="text-lg text-gray-400 mb-12 max-w-xl mx-auto">
-          Currently bridging the gap between sales and engineering as a Solutions Architect at AWS
+        <p className="text-lg text-gray-300 mb-12 max-w-xl mx-auto">
+          Currently bridging the gap between sales and engineering, tinkering with AI/ML, or skiing on a mountain somewhere...
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a
             href="#projects"
-            className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            className="px-8 py-4 border-2 border-blue-500/50 text-blue-400 rounded-full font-semibold hover:bg-blue-500/10 transition-all duration-300 transform hover:scale-105"
           >
             View My Work
           </a>

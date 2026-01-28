@@ -3,33 +3,65 @@
 export default function Projects() {
   const projects = [
     {
-      title: "Spotifu Music",
-      description: "A music streaming app that emulates Spotify's core features.",
-      image: "/spotifu.png",
-      sourceUrl: "https://github.com/nathanpogue/spotifu",
-      previewUrl: "https://spotifu-demo.vercel.app"
+      title: "Zero Trust Generative AI with AWS Nitro Enclaves",
+      description: "Machine learning solution to leverage AWS Nitro Enclaves for zero trust inference.",
+      image: "/projects/zero-trust.png",
+      sourceUrl: "https://github.com/aws-samples/sample-for-secure-medical-llm-inference-with-nitro-enclaves",
+      previewUrl: "https://aws.amazon.com/blogs/compute/building-zero-trust-generative-ai-applications-in-healthcare-with-aws-nitro-enclaves/"
     },
     {
-      title: "Shopp App",
-      description: "An e-commerce platform that replicates Shopify's key features.",
-      image: "/shopify-clon.png",
-      sourceUrl: "https://github.com/nathanpogue/shopp",
-      previewUrl: "https://shopp-demo.vercel.app"
+      title: "How to Build a Reverse Image Search Engine",
+      description: "Machine learning solution to build a reverse image search engine using AWS native services.",
+      image: "/projects/rise.png",
+      sourceUrl: "https://github.com/aws-samples/reverse-image-search-engine",
+      previewUrl: "https://aws.amazon.com/blogs/machine-learning/build-a-reverse-image-search-engine-with-amazon-titan-multimodal-embeddings-in-amazon-bedrock-and-aws-managed-services/"
     },
     {
-      title: "ClonTagram",
-      description: "A social network that replicates the features of Instagram",
-      image: "/clone-ig.png",
-      sourceUrl: "https://github.com/nathanpogue/clontagram",
-      previewUrl: "https://clontagram-demo.vercel.app"
+      title: "Bedrock Speech-to-Text Chat",
+      description: "Amazon Bedrock solution to convert speech to text for generative AI inference and chat applications.",
+      image: "/projects/github.png",
+      sourceUrl: "https://github.com/aws-samples/genai-quickstart-pocs/tree/main/genai-quickstart-pocs-python/amazon-bedrock-speech-to-text-chat-poc",
+    },
+    {
+      title: "Intelligent Document Processing on AWS",
+      description: "Amazon Bedrock and Amazon Textract solution to perform intelligent document processing.",
+      image: "/projects/github.png",
+      sourceUrl: "https://github.com/aws-samples/genai-quickstart-pocs/tree/main/genai-quickstart-pocs-python/amazon-bedrock-intelligent-document-processing-poc",
+    },
+    {
+      title: "Clarifai Smart Brain",
+      description: "React application that detects faces in user uploaded images using Clarifai API.",
+      image: "/projects/clarifi.png",
+      sourceUrl: "https://github.com/nathanpogue6/smart-brain",
+    },
+    {
+      title: "Math Garden",
+      description: "Machine learning application that uses the MNIST Handwritten Digit dataset to verify user-written answers for a game of addition.",
+      image: "/projects/math-garden.mp4",
+      sourceUrl: "https://github.com/nathanpogue6/math-garden",
+      previewUrl: "https://nathanpogue6.github.io/math-garden/index.html",
+      isVideo: true
+    },
+    {
+      title: "DermaGO",
+      description: "Machine learning web application that uses a CNN to diagnose seven different types of skin cancers and lesions.",
+      image: "/projects/dermago.png",
+      sourceUrl: "https://github.com/nathanpogue6/dermago",
+    },
+    {
+      title: "Sorting Algorithms Visualized",
+      description: "Java application with interactive GUI to visualize different sorting algorthims.",
+      image: "/projects/Sorting-Algorithms-Demo.mp4",
+      sourceUrl: "https://github.com/nathanpogue6/sorting-algo-visualizer",
+      isVideo: true
     }
   ]
 
   return (
     <section id="projects" className="relative py-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Sticky title container with height to allow unsticking */}
-        <div style={{ height: `${(projects.length - 1) * 100}vh` }}>
+        {/* Sticky title container - scrolls under cards after last project */}
+        <div style={{ height: `${(projects.length + 3) * 30}vh` }}>
           <div className="sticky top-8 z-10 mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
               Featured Projects
@@ -38,7 +70,7 @@ export default function Projects() {
         </div>
 
         {/* Projects that stack */}
-        <div className="relative space-y-8" style={{ marginTop: `calc(-${(projects.length - 1) * 100}vh + 80px)` }}>
+        <div className="relative space-y-8" style={{ marginTop: `calc(-${(projects.length + 3) * 30}vh + 80px)` }}>
           {projects.map((project, index) => (
             <div
               key={index}
@@ -66,37 +98,57 @@ export default function Projects() {
                         href={project.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-200"
+                        className="flex items-center gap-2 font-medium text-gray-300 hover:text-white transition-colors duration-200"
                       >
-                        <span className="font-medium">Source</span>
+                        <span>Source</span>
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
                       
-                      <a
-                        href={project.previewUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-200"
-                      >
-                        <span className="font-medium">Preview</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
+                      {project.previewUrl && (
+                        <a
+                          href={project.previewUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        >
+                          <span>Preview</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   </div>
 
-                  {/* Right side - Project Image */}
+                  {/* Right side - Project Image/Video */}
                   <div className="relative">
-                    <div className="relative rounded-2xl overflow-hidden bg-slate-700/50 border border-slate-600/50 shadow-xl">
-                      <div className="aspect-video bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center">
-                        <div className="text-6xl font-bold text-slate-600">
-                          {project.title.split(' ').map(word => word[0]).join('')}
-                        </div>
+                    <a 
+                      href={index < 2 && project.previewUrl ? project.previewUrl : project.sourceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block relative rounded-2xl overflow-hidden bg-slate-700/50 border border-slate-600/50 shadow-xl hover:border-blue-500/50 transition-all duration-300 cursor-pointer group"
+                    >
+                      <div className={`aspect-video flex items-center justify-center ${index >= projects.length - 2 ? 'px-2 py-1' : ''}`}>
+                        {project.isVideo ? (
+                          <video 
+                            src={project.image} 
+                            autoPlay 
+                            loop 
+                            muted 
+                            playsInline
+                            className={`w-full h-full ${index >= projects.length - 2 ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
+                          />
+                        ) : (
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className={`w-full h-full ${index >= projects.length - 2 ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
+                          />
+                        )}
                       </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
