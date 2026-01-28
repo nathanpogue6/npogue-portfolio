@@ -33,6 +33,7 @@ export default function Projects() {
       description: "React application that detects faces in user uploaded images using Clarifai API.",
       image: "/projects/clarifi.png",
       sourceUrl: "https://github.com/nathanpogue6/smart-brain",
+      backendUrl: "https://github.com/nathanpogue6/smart-brain-api"
     },
     {
       title: "Math Garden",
@@ -50,7 +51,7 @@ export default function Projects() {
     },
     {
       title: "Sorting Algorithms Visualized",
-      description: "Java application with interactive GUI to visualize different sorting algorthims.",
+      description: "Java application with interactive GUI to visualize different sorting algorithms.",
       image: "/projects/Sorting-Algorithms-Demo.mp4",
       sourceUrl: "https://github.com/nathanpogue6/sorting-algo-visualizer",
       isVideo: true
@@ -85,7 +86,7 @@ export default function Projects() {
                   
                   {/* Left side - Project Info */}
                   <div className="space-y-6">
-                    <h3 className="text-3xl md:text-4xl font-bold text-blue-400">
+                    <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300">
                       {project.title}
                     </h3>
                     
@@ -106,6 +107,20 @@ export default function Projects() {
                         </svg>
                       </a>
                       
+                      {project.backendUrl && (
+                        <a
+                          href={project.backendUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        >
+                          <span>Backend</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+
                       {project.previewUrl && (
                         <a
                           href={project.previewUrl}

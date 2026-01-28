@@ -4,7 +4,7 @@ export default function Experience() {
       title: "Solutions Architect",
       company: "Amazon Web Services (AWS)",
       period: "2023 - Present",
-      description: "Spearheaded cloud adoption across Canadian healthcare organizations, driving >$45M+ in new ARR, with dedicated focus on EHR, AI/ML, and analytics workloads.",
+      description: "Spearheading cloud adoption across Canadian healthcare organizations, driving >$45M in new ARR, with dedicated focus on EHR, AI/ML, and analytics workloads.",
       technologies: ["Amazon Bedrock", "Amazon SageMaker", "Epic", "Amazon QuickSight", "Amazon EC2"],
       logo: "/aws.png"
     },

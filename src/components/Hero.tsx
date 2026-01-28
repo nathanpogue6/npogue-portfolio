@@ -7,7 +7,7 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [displayedText, setDisplayedText] = useState('')
   
-  const fullText = 'Solutions Architect at '
+  const fullText = 'Solutions Architect @ Amazon Web Services '
 
   useEffect(() => {
     setIsLoaded(true)
