@@ -14,11 +14,13 @@ export default function About() {
                 from Western University and the Ivey Business School, where I developed a strong foundation in technical problem-solving, sales, 
                 and business strategy.
               </p>
-
               <p className="text-lg text-gray-300 leading-relaxed">
                 Over the years, I've honed my skills working closely with customers to bring their ideas to life - from early concepts to 
                 production-ready solutions. With a passion for cloud computing and machine learning, my projects range from creative 
                 generative AI experiments to innovative web applications, all with a focus on performance, security, and long-term scalability.
+              </p>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Outside of work, I'm a big fan of skiing, hiking, weightlifting, Brazilian Jiu-Jitsu, and concerts!
               </p>
             <div className="grid grid-cols-2 gap-6 mt-8">
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-white/10">
@@ -41,15 +43,15 @@ export default function About() {
           </div>
           
           <div className="relative">
-            <div className="relative w-full max-w-md mx-auto">
-              <div className="absolute inset-0 -inset-y-8 bg-blue-500 rounded-full blur-3xl opacity-25"></div>
-              <div className="relative w-96 h-96 mx-auto rounded-full overflow-hidden">
+            <div className="relative w-full max-w-lg mx-auto">
+              <div className="absolute inset-0 -inset-y-12 -inset-x-8 bg-blue-500 rounded-full blur-[80px] opacity-30"></div>
+              <div className="relative w-[28rem] h-[28rem] mx-auto rounded-full overflow-hidden">
                 <Image
                   src="/headshot.jpg"
                   alt="Nathan Pogue"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 384px, 384px"
+                  sizes="(max-width: 768px) 448px, 448px"
                 />
               </div>
             </div>

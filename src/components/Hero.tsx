@@ -40,7 +40,7 @@ export default function Hero() {
           <source src="/background.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay to dim the video */}
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         {/* Gradient fade to blend with next section */}
         <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-black"></div>
       </div>
@@ -81,7 +81,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+            className="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
           >
             Get In Touch
           </a>
