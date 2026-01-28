@@ -58,7 +58,7 @@ export default function Contact() {
           </a>
         </div>
 
-        <footer className="pt-6 border-t border-white/10">
+        <footer className="pt-6 pb-16 border-t border-white/10">
           <p className="text-sm sm:text-base text-gray-400 px-4">
             © 2026 Nathan Pogue. Built with Next.js and Tailwind CSS.
           </p>
