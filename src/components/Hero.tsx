@@ -45,43 +45,43 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-b from-transparent to-black"></div>
       </div>
 
-      <div className={`relative z-10 text-center px-6 transition-all duration-1000 ${
+      <div className={`relative z-10 text-center px-4 sm:px-6 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tight whitespace-nowrap">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-white mb-6 tracking-tight">
           Nathan
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300">
             {' '}Pogue
           </span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto leading-relaxed min-h-[2rem] flex items-center justify-center">
-          <span>{displayedText}</span>
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 max-w-2xl mx-auto leading-relaxed min-h-[2rem] flex flex-wrap items-center justify-center">
+          <span className="whitespace-normal break-words">{displayedText}</span>
           {displayedText.length >= fullText.length && (
             <img 
               src="/aws.png"
               alt="AWS" 
-              className="inline-block h-8 md:h-10 ml-2 align-middle"
+              className="inline-block h-6 sm:h-8 md:h-10 ml-2 align-middle"
             />
           )}
           <span className="inline-block w-0.5 h-6 bg-white ml-1 animate-pulse align-middle" 
                 style={{ opacity: displayedText.length < fullText.length ? 1 : 0 }} />
         </p>
         
-        <p className="text-lg text-gray-300 mb-12 max-w-xl mx-auto">
+        <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-12 max-w-xl mx-auto px-4">
           Currently bridging the gap between sales and engineering, tinkering with AI/ML, or skiing on a mountain somewhere...
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
           <a
             href="#projects"
-            className="px-8 py-4 border-2 border-blue-500/50 text-blue-400 rounded-full font-semibold hover:bg-blue-500/10 transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto px-8 py-4 border-2 border-blue-500/50 text-blue-400 rounded-full font-semibold hover:bg-blue-500/10 transition-all duration-300 transform hover:scale-105"
           >
             View My Work
           </a>
           <a
             href="#contact"
-            className="px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto px-8 py-4 border-2 border-white/20 text-white rounded-full font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
           >
             Get In Touch
           </a>

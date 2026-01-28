@@ -35,9 +35,9 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-6 bg-black">
+    <section id="experience" className="py-20 px-4 sm:px-6 bg-black overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-16 text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-16 text-center">
           Work Experience
         </h2>
         
@@ -45,7 +45,7 @@ export default function Experience() {
           {experiences.map((exp, index) => (
             <div 
               key={index}
-              className="relative rounded-xl p-8 overflow-hidden group transition-all duration-300"
+              className="relative rounded-xl p-4 sm:p-6 md:p-8 overflow-hidden group transition-all duration-300"
             >
               {/* Gradient background */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-slate-300/10 group-hover:from-blue-400/20 group-hover:to-slate-300/20 transition-all duration-300"></div>
@@ -55,8 +55,8 @@ export default function Experience() {
               {/* Content */}
               <div className="relative z-10">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="relative w-12 h-12 flex-shrink-0">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                     <img
                       src={exp.logo}
                       alt={`${exp.company} logo`}
@@ -64,20 +64,20 @@ export default function Experience() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold text-white mb-2">{exp.title}</h3>
-                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300 text-lg font-medium">{exp.company}</p>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-white mb-1 sm:mb-2">{exp.title}</h3>
+                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300 text-base sm:text-lg font-medium">{exp.company}</p>
                   </div>
                 </div>
-                <span className="text-gray-400 font-medium mt-2 md:mt-0">{exp.period}</span>
+                <span className="text-gray-400 font-medium mt-2 md:mt-0 text-sm sm:text-base">{exp.period}</span>
               </div>
               
-              <p className="text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
+              <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
               
               <div className="flex flex-wrap gap-2">
                 {exp.technologies.map((tech, techIndex) => (
                   <span 
                     key={techIndex}
-                    className="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm border border-blue-500/30"
+                    className="px-2 sm:px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-xs sm:text-sm border border-blue-500/30"
                   >
                     {tech}
                   </span>
