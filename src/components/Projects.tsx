@@ -1,6 +1,31 @@
 'use client'
 
+import { useState, useEffect } from 'react'
+
 export default function Projects() {
+  const [heightMultiplier, setHeightMultiplier] = useState(8)
+
+  useEffect(() => {
+    const updateMultiplier = () => {
+      const aspectRatio = window.innerWidth / window.innerHeight
+      // For wider screens (landscape), use smaller multiplier
+      // For taller screens (portrait/narrow), use larger multiplier
+      if (aspectRatio > 1.5) {
+        setHeightMultiplier(3) // Wide landscape
+      } else if (aspectRatio > 1.2) {
+        setHeightMultiplier(5) // Standard landscape
+      } else if (aspectRatio > 0.8) {
+        setHeightMultiplier(7) // Square-ish
+      } else {
+        setHeightMultiplier(8) // Portrait/narrow
+      }
+    }
+
+    updateMultiplier()
+    window.addEventListener('resize', updateMultiplier)
+    return () => window.removeEventListener('resize', updateMultiplier)
+  }, [])
+
   const projects = [
     {
       title: "Zero Trust Generative AI with AWS Nitro Enclaves",
@@ -62,7 +87,7 @@ export default function Projects() {
     <section id="projects" className="relative py-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
         {/* Sticky title container - scrolls under cards after last project */}
-        <div style={{ height: `${(projects.length + 7) * 30}vh` }}>
+        <div style={{ height: `${(projects.length + heightMultiplier) * 30}vh` }}>
           <div className="sticky top-8 z-10 mb-20">
             <h2 className="text-4xl md:text-5xl font-bold text-white">
               Featured Projects
@@ -71,7 +96,7 @@ export default function Projects() {
         </div>
 
         {/* Projects that stack */}
-        <div className="relative space-y-8" style={{ marginTop: `calc(-${(projects.length + 7) * 30}vh + 80px)` }}>
+        <div className="relative space-y-8" style={{ marginTop: `calc(-${(projects.length + heightMultiplier) * 30}vh + 80px)` }}>
           {projects.map((project, index) => (
             <div
               key={index}

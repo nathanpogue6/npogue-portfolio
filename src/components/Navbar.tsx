@@ -63,7 +63,7 @@ export default function Navbar() {
       </nav>
 
       {/* Left sidebar - visible after hero section on very large screens only */}
-      <nav className={`hidden xl:block fixed left-8 top-1/2 -translate-y-1/2 z-50 transition-all duration-500 ${
+      <nav className={`hidden min-[1651px]:block fixed left-8 top-1/2 -translate-y-1/2 z-50 transition-all duration-500 ${
         pastHero ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
         <div className="bg-gray-900/80 backdrop-blur-md rounded-3xl py-6 px-4 shadow-2xl border border-gray-700/50">
@@ -83,8 +83,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Burger menu - bottom left for screens below xl */}
-      <div className={`xl:hidden fixed bottom-8 left-8 z-50 transition-all duration-500 ${
+      {/* Burger menu - bottom left for screens 1650px and below */}
+      <div className={`min-[1651px]:hidden fixed bottom-8 left-8 z-50 transition-all duration-500 ${
         pastHero ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}>
         <button
