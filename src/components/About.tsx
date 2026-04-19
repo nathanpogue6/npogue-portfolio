@@ -10,14 +10,14 @@ export default function About() {
               About Me
             </h2>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                Hi, I'm Nathan Pogue, a Solutions Architect at AWS. I hold a dual degree in Computer Science and Business Administration 
+                Hi, I'm Nathan Pogue, a Solutions Engineer at ElevenLabs. I hold a dual degree in Computer Science and Business Administration 
                 from Western University and the Ivey Business School, where I developed a strong foundation in technical problem-solving, sales, 
                 and business strategy.
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 Over the years, I've honed my skills working closely with customers to bring their ideas to life - from early concepts to 
-                production-ready solutions. With a passion for cloud computing and machine learning, my projects range from creative 
-                generative AI experiments to innovative web applications, all with a focus on performance, security, and long-term scalability.
+                production-ready solutions. With a passion for cloud computing and machine learning, my customer work and projects range from transformative 
+                agentic AI deployments to innovative web applications - all with a focus on performance, security, and long-term scalability.
               </p>
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 Outside of work, I'm a big fan of skiing, hiking, weightlifting, Brazilian Jiu-Jitsu, and concerts!
@@ -29,7 +29,7 @@ export default function About() {
               </div>
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/10">
                 <h3 className="text-blue-400 font-semibold mb-2 text-sm sm:text-base">Tools</h3>
-                <p className="text-gray-300 text-xs sm:text-sm">Git, Docker, AWS</p>
+                <p className="text-gray-300 text-xs sm:text-sm">Git, Docker, AWS, Vercel</p>
               </div>
               <div className="bg-white/5 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/10">
                 <h3 className="text-blue-400 font-semibold mb-2 text-sm sm:text-base">Frameworks</h3>

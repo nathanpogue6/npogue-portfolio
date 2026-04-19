@@ -1,9 +1,18 @@
 export default function Experience() {
   const experiences = [
     {
+      title: "Enterprise Solutions Engineer",
+      company: "ElevenLabs",
+      period: "2026 - Present",
+      description: "Scaling cutting-edge voice and agentic AI solutions globally, transforming how enterprises interface with intelligent systems and building the future of human-like AI interactions.",
+      technologies: ["Agentic Voice AI", "ElevenAgents", "ElevenAPI"],
+      logo: "/elevenlabs.png",
+      logoClass: "w-8 h-8 sm:w-10 sm:h-10"
+    },
+    {
       title: "Solutions Architect",
       company: "Amazon Web Services (AWS)",
-      period: "2023 - Present",
+      period: "2023 - 2026",
       description: "Spearheading cloud adoption across Canadian healthcare organizations, driving >$45M in new ARR, with dedicated focus on EHR, AI/ML, and analytics workloads.",
       technologies: ["Amazon Bedrock", "Amazon SageMaker", "Epic", "Amazon QuickSight", "Amazon EC2"],
       logo: "/aws.png"
@@ -56,7 +65,7 @@ export default function Experience() {
               <div className="relative z-10">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div className="flex items-center gap-3 sm:gap-4">
-                  <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+                  <div className={`relative flex-shrink-0 ${exp.logoClass || 'w-10 h-10 sm:w-12 sm:h-12'}`}>
                     <img
                       src={exp.logo}
                       alt={`${exp.company} logo`}
