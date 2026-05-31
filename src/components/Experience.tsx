@@ -44,7 +44,7 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 bg-black overflow-hidden">
+    <section id="experience" className="pt-20 pb-12 px-4 sm:px-6 bg-black overflow-hidden">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-16 text-center">
           Work Experience

@@ -1,30 +1,64 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useRef, useState, useLayoutEffect, useCallback } from 'react'
+
+const CARD_STICKY_TOP = 120
+const TITLE_STICKY_TOP = 32 // top-8
+const TITLE_MARGIN_BOTTOM = 80 // mb-20
 
 export default function Projects() {
-  const [heightMultiplier, setHeightMultiplier] = useState(8)
+  const titleTrackRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const [layout, setLayout] = useState<{ trackHeight: number; cardsMarginTop: number } | null>(null)
 
-  useEffect(() => {
-    const updateMultiplier = () => {
-      const aspectRatio = window.innerWidth / window.innerHeight
-      // For wider screens (landscape), use smaller multiplier
-      // For taller screens (portrait/narrow), use larger multiplier
-      if (aspectRatio > 1.5) {
-        setHeightMultiplier(3) // Wide landscape
-      } else if (aspectRatio > 1.2) {
-        setHeightMultiplier(5) // Standard landscape
-      } else if (aspectRatio > 0.8) {
-        setHeightMultiplier(7) // Square-ish
-      } else {
-        setHeightMultiplier(8) // Portrait/narrow
-      }
-    }
+  const measureLayout = useCallback(() => {
+    const titleEl = titleRef.current
+    const cardsEl = cardsRef.current
+    if (!titleEl || !cardsEl) return
 
-    updateMultiplier()
-    window.addEventListener('resize', updateMultiplier)
-    return () => window.removeEventListener('resize', updateMultiplier)
+    const cards = Array.from(cardsEl.children) as HTMLElement[]
+    if (cards.length === 0) return
+
+    const titleHeight = titleEl.offsetHeight
+    const titleBlock = titleHeight + TITLE_MARGIN_BOTTOM
+    const lastCard = cards[cards.length - 1]
+
+    // Last card finishes stacking when its top reaches CARD_STICKY_TOP — measured
+    // from the cards container via offsetTop, not when the whole list exits the viewport.
+    const stackScrollDistance = Math.max(
+      0,
+      titleBlock + lastCard.offsetTop - CARD_STICKY_TOP
+    )
+
+    const trackHeight = stackScrollDistance + titleHeight + TITLE_STICKY_TOP
+    const cardsMarginTop = -(trackHeight - titleBlock)
+
+    setLayout({ trackHeight, cardsMarginTop })
   }, [])
+
+  useLayoutEffect(() => {
+    measureLayout()
+
+    const resizeObserver = new ResizeObserver(measureLayout)
+    if (cardsRef.current) resizeObserver.observe(cardsRef.current)
+    if (titleRef.current) resizeObserver.observe(titleRef.current)
+
+    window.addEventListener('resize', measureLayout)
+
+    const mediaElements = cardsRef.current?.querySelectorAll('img, video') ?? []
+    mediaElements.forEach((el) => {
+      el.addEventListener('load', measureLayout)
+      if (el instanceof HTMLVideoElement) {
+        el.addEventListener('loadedmetadata', measureLayout)
+      }
+    })
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', measureLayout)
+    }
+  }, [measureLayout])
 
   const projects = [
     {
@@ -84,41 +118,48 @@ export default function Projects() {
   ]
 
   return (
-    <section id="projects" className="relative py-20 bg-black">
+    <section id="projects" className="relative pt-12 pb-20 bg-black">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Sticky title container - scrolls under cards after last project */}
-        <div style={{ height: `${(projects.length + heightMultiplier) * 30}vh` }}>
-          <div className="sticky top-8 z-10 mb-20">
+        <div
+          ref={titleTrackRef}
+          style={layout ? { height: `${layout.trackHeight}px` } : undefined}
+        >
+          <div
+            ref={titleRef}
+            className="sticky top-8 z-40 mb-20 bg-black pb-4"
+          >
             <h2 className="text-4xl md:text-5xl font-bold text-white">
               Featured Projects
             </h2>
           </div>
         </div>
 
-        {/* Projects that stack */}
-        <div className="relative space-y-8" style={{ marginTop: `calc(-${(projects.length + heightMultiplier) * 30}vh + 80px)` }}>
+        <div
+          ref={cardsRef}
+          className="relative space-y-8"
+          style={layout ? { marginTop: `${layout.cardsMarginTop}px` } : undefined}
+        >
           {projects.map((project, index) => (
             <div
               key={index}
               className="sticky"
               style={{
-                top: '120px',
-                zIndex: 20 + index,
+                top: `${CARD_STICKY_TOP}px`,
+                zIndex: index === projects.length - 1 ? 50 : 20 + index,
               }}
             >
               <div className="bg-slate-800 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-slate-700/50 shadow-2xl -mx-2">
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                  
-                  {/* Left side - Project Info */}
+
                   <div className="space-y-6">
                     <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-slate-300">
                       {project.title}
                     </h3>
-                    
+
                     <p className="text-lg text-gray-400 leading-relaxed">
                       {project.description}
                     </p>
-                    
+
                     <div className="flex gap-6 pt-4">
                       <a
                         href={project.sourceUrl}
@@ -131,7 +172,7 @@ export default function Projects() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                         </svg>
                       </a>
-                      
+
                       {project.backendUrl && (
                         <a
                           href={project.backendUrl}
@@ -162,9 +203,8 @@ export default function Projects() {
                     </div>
                   </div>
 
-                  {/* Right side - Project Image/Video */}
                   <div className="relative">
-                    <a 
+                    <a
                       href={index < 2 && project.previewUrl ? project.previewUrl : project.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -172,17 +212,17 @@ export default function Projects() {
                     >
                       <div className={`aspect-video flex items-center justify-center ${index >= projects.length - 2 ? 'px-2 py-1' : ''}`}>
                         {project.isVideo ? (
-                          <video 
-                            src={project.image} 
-                            autoPlay 
-                            loop 
-                            muted 
+                          <video
+                            src={project.image}
+                            autoPlay
+                            loop
+                            muted
                             playsInline
                             className={`w-full h-full ${index >= projects.length - 2 ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
                           />
                         ) : (
-                          <img 
-                            src={project.image} 
+                          <img
+                            src={project.image}
                             alt={project.title}
                             className={`w-full h-full ${index >= projects.length - 2 ? 'object-contain' : 'object-cover'} group-hover:scale-105 transition-transform duration-300`}
                           />

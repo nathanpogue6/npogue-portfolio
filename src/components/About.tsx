@@ -1,8 +1,62 @@
+'use client'
+
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+
+const ACTIVITY_PHOTOS = ['/hiking.jpeg', '/summit.jpeg', '/skiing.jpeg']
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const hasAnimated = useRef(false)
+  const [isFlipped, setIsFlipped] = useState(false)
+  // backSrc is what sits on the back face — swapped while the card is face-down
+  const [backSrc, setBackSrc] = useState('/hiking.jpeg')
+  // tracks which photo to show next on hover (starts at 1 since hiking=0 is used on scroll)
+  const nextIndexRef = useRef(1)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true
+          // Always show hiking.jpeg (index 0) on first scroll
+          setBackSrc(ACTIVITY_PHOTOS[0])
+          setTimeout(() => {
+            setIsFlipped(true)
+            setTimeout(() => {
+              setIsFlipped(false)
+            }, 1500)
+          }, 400)
+        }
+      },
+      { threshold: 0.4 }
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
+  function handleMouseEnter() {
+    setBackSrc(ACTIVITY_PHOTOS[nextIndexRef.current])
+    setIsFlipped(true)
+  }
+
+  function handleMouseLeave() {
+    setIsFlipped(false)
+    // Advance to next photo in sequence, wrapping around
+    nextIndexRef.current = (nextIndexRef.current + 1) % ACTIVITY_PHOTOS.length
+    // Pre-load it onto the back face after the flip-back animation completes
+    setTimeout(() => {
+      setBackSrc(ACTIVITY_PHOTOS[nextIndexRef.current])
+    }, 700)
+  }
+
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 bg-black overflow-hidden">
+    <section ref={sectionRef} id="about" className="py-20 px-4 sm:px-6 bg-black overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
@@ -45,14 +99,67 @@ export default function About() {
           <div className="relative mt-12 md:mt-0">
             <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto">
               <div className="absolute inset-0 -inset-y-8 sm:-inset-y-12 -inset-x-6 sm:-inset-x-8 bg-blue-500 rounded-full blur-[60px] sm:blur-[80px] opacity-30"></div>
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] mx-auto rounded-full overflow-hidden">
-                <Image
-                  src="/headshot.jpg"
-                  alt="Nathan Pogue"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
-                />
+
+              {/* Flip card container */}
+              <div
+                className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] mx-auto cursor-pointer"
+                style={{ perspective: '1000px' }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* Inner card that flips */}
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    transformStyle: 'preserve-3d',
+                    transition: 'transform 0.7s ease-in-out',
+                    transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                  }}
+                >
+                  {/* Front face — headshot */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      borderRadius: '9999px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <Image
+                      src="/headshot.jpg"
+                      alt="Nathan Pogue"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
+                    />
+                  </div>
+
+                  {/* Back face — activity photo */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      transform: 'rotateY(180deg)',
+                      borderRadius: '9999px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <Image
+                      src={backSrc}
+                      alt="Nathan Pogue outdoors"
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: backSrc === '/skiing.jpeg' ? 'center 70%' : 'center center' }}
+                      sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, (max-width: 1024px) 384px, 448px"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
