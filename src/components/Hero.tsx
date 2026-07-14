@@ -40,7 +40,7 @@ export default function Hero() {
         <p className={`text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-8 max-w-2xl mx-auto leading-relaxed flex flex-wrap items-center justify-center transition-all duration-1000 delay-500 ${
           isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <span>Forward DeployedEngineering @</span>
+          <span>Forward Deployed Engineering @</span>
           <img 
             src="/elevenlabs-hero.png"
             alt="ElevenLabs" 

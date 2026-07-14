@@ -64,7 +64,7 @@ export default function About() {
               About Me
             </h2>
             <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
-                Hi, I'm Nathan Pogue, a Solutions Engineer at ElevenLabs. I hold a dual degree in Computer Science and Business Administration 
+                Hi, I'm Nathan Pogue, a Solutions Engineer at ElevenLabs on the FDE team. I hold a dual degree in Computer Science and Business Administration 
                 from Western University and the Ivey Business School, where I developed a strong foundation in technical problem-solving, sales, 
                 and business strategy.
               </p>
