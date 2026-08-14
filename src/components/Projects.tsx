@@ -62,6 +62,12 @@ export default function Projects() {
 
   const projects = [
     {
+      title: "How to Build an Appointment Scheduling Voice Agent",
+      description: "Technical blog post on how to build a healthcare appointment scheduling agent with ElevenAgents",
+      image: "/projects/healthcare-scheduling-agent.png",
+      previewUrl: "https://elevenlabs.io/blog/elevenagents-for-healthcare-build-an-inbound-appointment-scheduling-agent"
+    },
+    {
       title: "Zero Trust Generative AI with AWS Nitro Enclaves",
       description: "Machine learning solution to leverage AWS Nitro Enclaves for zero trust inference.",
       image: "/projects/zero-trust.png",
@@ -161,17 +167,19 @@ export default function Projects() {
                     </p>
 
                     <div className="flex gap-6 pt-4">
-                      <a
-                        href={project.sourceUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 font-medium text-gray-300 hover:text-white transition-colors duration-200"
-                      >
-                        <span>Source</span>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
+                      {project.sourceUrl && (
+                        <a
+                          href={project.sourceUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 font-medium text-gray-300 hover:text-white transition-colors duration-200"
+                        >
+                          <span>Source</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
 
                       {project.backendUrl && (
                         <a
@@ -205,7 +213,7 @@ export default function Projects() {
 
                   <div className="relative">
                     <a
-                      href={index < 2 && project.previewUrl ? project.previewUrl : project.sourceUrl}
+                      href={project.previewUrl ?? project.sourceUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block relative rounded-2xl overflow-hidden bg-slate-700/50 border border-slate-600/50 shadow-xl hover:border-blue-500/50 transition-all duration-300 cursor-pointer group"
